@@ -1,0 +1,95 @@
+/* feuille de style de Led cube designer */
+.top{
+	position:relative;
+	top:0px;
+	height:25px;
+	padding:2px;
+	max-width:99%;
+	min-width:800px;
+}
+.top .controls {
+	position:relative;
+	display:block;
+	float:left;
+	margin:2px auto;
+	padding:0px;
+}
+.top .controls .buttons{
+	position:relative;
+	display:block;
+	float:left;
+	margin-right:10px;
+}
+.top .controls .mdTxtTimeToDisplay{
+	position:relative;
+	margin-right:5px;
+	width:30px;
+	text-align:right;
+}
+.topLeft{
+	margin-top:32px;
+	position:relative;
+	width:99%;
+	overflow:auto;
+}
+#init{
+	float:left;
+}
+#motifs{
+	position:relative;
+	float:left;
+}
+#txtLargeur{
+	width:30px;
+	text-align:right;
+}
+.importExport{
+	position:absolute;
+	right:0px;
+	margin-top:2px;
+	max-width:1250px;
+}
+#txtImport, #txtScript{
+	min-width:10px;
+	max-width:1200px;
+}
+/* matriceDesigner */
+.matriceDesigner{
+	margin:5px 15px;
+	float:left;
+}
+.matriceDesigner .controls{
+	margin:2px;
+}
+.matriceDesigner .mdDesigner{
+	margin:5px;
+	clear:left;
+		position:relative;
+	float:left;
+}
+.matriceDesigner .controls .buttons{
+	position:relative;
+	display:block;
+	width:100px;
+	float:left;
+}
+.matriceDesigner .controls .inputs{
+	position:relative;
+	display:block;
+	float:left;
+	width:30px;
+}
+.matriceDesigner .controls .mdTxtTimeToDisplay{
+	position:relative;
+	margin-right:5px;
+	width:30px;
+	text-align:right;
+}
+.matriceDesigner .controls .buttons img{
+	width:16px;
+	height:16px;
+}
+.matriceDesigner .mdDesigner  .mdLayerSelection{
+	background-color:#A6AAA9;
+	width:3px;
+}

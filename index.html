@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Led Designer</title>
+<script src="jquery/js/jquery-1.9.1.js"></script>
+<script src="jquery/js/jquery-ui-1.10.3.custom.js"></script>
+<script type="text/javascript" src="matrice.js">
+</script>
+<script type="text/javascript" src="matriceDesigner.js">
+</script>
+<script type="text/javascript" src="toolTip.js">
+</script>
+<script type="text/javascript" src="utilities.js">
+</script>
+<script type="text/javascript">
+initialiserDesigner = function(){
+	if($(".designer").length == 0)
+		$("#motifs").append('<div class="designer"></div>');
+	$(".designer").matriceDesigner({width:"#txtLargeur",patterns:"#motifs",script:"#txtScript",layerPerLayer : "on",keepRation : "on",styleDir:"blue"});
+}
+viderMotifs = function(){
+	$("#motifs .matriceDesigner").matriceDesigner("destroy");
+}
+copierMotifs = function(){
+	$("#script").val('');
+	$('#motifs .matriceDesigner').matriceDesigner("saveAll");
+	/*if (window.clipboardData && clipboardData.setData) {
+		clipboardData.setData("Text", $("#script").val());
+	}*/
+}
+importPatterns = function(){
+	if($(".designerImport").length == 0)
+		$("#motifs").append('<div class="designerImport"></div>');
+	$(".designerImport").matriceDesigner({width:"#txtLargeur",patterns:"#motifs",script:"#txtScript",layerPerLayer : "on",keepRation : "on",styleDir:"blue"})
+	.matriceDesigner("importAll",$("#txtImport").val());
+}
+$("document").ready(function(){
+	
+	/*$("#txtLargeur").input({min:2, max:10});
+	$(".mdTxtTimeToDisplay").input({min:1,max:100},function(){
+		$('#motifs .designer').find('.mdTxtTimeToDisplay').val($(this).val());
+	});*/
+	$("#motifs").sortable({rever:true});
+    $("#motifs").disableSelection();
+	$(".buttons").tooltip({"getValue":function(){
+			var src = $(this).attr("src");
+			src = src.substr(src.lastIndexOf("/")+1);
+			src = src.substr(0,src.indexOf("."));
+			return src;
+		}
+	});
+});
+</script>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div class="top">
+<table class="importExport">
+<tbody>
+<tr><td>Exporter</td><td><img src="Images/green/save.png" class="btnCopierMotifs" id="btnCopierMotifs" onclick="copierMotifs();"/></td><td><input type="text" id="txtScript"/></td>
+<tr><td>Importer</td><td><img src="Images/green/import.png" class="btnImport" id="btnImport" onclick="importPatterns();"/></td><td><input type="text" id="txtImport" /></td>
+</tbody>
+</table>
+<div class="masterControls controls">
+<span class="buttons">
+<img src="Images/blue/copy_up.png" alt="Hello" onclick="$('#motifs .matriceDesigner').matriceDesigner('copy',0);"/>
+<img src="Images/blue/copy_down.png" onclick="$('#motifs .matriceDesigner').matriceDesigner('copy',2);"/>
+<img src="Images/blue/up.png" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',0);"/>
+<img src="Images/blue/down.png" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',2);"/>
+<img src="Images/blue/left.png" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',3);"/>
+<img src="Images/blue/right.png" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',1);"/>
+<img src="Images/blue/rotate_right.png" alt="rot. droite" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',10);"/>
+<img src="Images/blue/rotate_left.png" alt="rot. droite" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',11);"/>
+<img src="Images/blue/rotate_up.png" alt="rot. up" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',20);"/>
+<img src="Images/blue/rotate_down.png" alt="rot. down" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',22);"/>
+<img src="Images/blue/rotate_out_left.png" alt="rot. out left" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',23);"/>
+<img src="Images/blue/rotate_out_right.png" alt="rot. out right" onclick="$('#motifs .matriceDesigner').matriceDesigner('move',21);"/>
+<img src="Images/blue/add.png" class="btnPopulate" onclick="$('#motifs .matriceDesigner').matriceDesigner('populate');"/>
+<img src="Images/blue/del.png" class="btnEmpty" onclick="$('#motifs .matriceDesigner').matriceDesigner('empty');"/>
+<img src="Images/blue/random.png" class="btnRandom" onclick="$('#motifs .matriceDesigner').matriceDesigner('random');"/>
+<img src="Images/blue/view.png" class="btnView" onclick="$('#motifs .matriceDesigner').matriceDesigner('toggleView');"/>
+<img src="Images/blue/shopping.png" class="btnEnregistrerMotif" onclick="$('#motifs .matriceDesigner').matriceDesigner('save');"/>
+<input type="text" class="mdTxtTimeToDisplay" value="10"/>
+<input type="checkbox" class="mdChkTimeToDisplay" checked="checked" onchange="$('#motifs .matriceDesigner').matriceDesigner('toggleRatioKeeper');"/>
+<input type="text" id="txtLargeur" value="5"/>
+<img src="Images/green/init.png" class="btnInit" id="btnInitialiserCube" onclick="initialiserDesigner();"/>
+<img src="Images/green/refresh.png" class="btnViderMotifs" id="btnViderMotifs" onclick="viderMotifs();"/>
+</div>
+</div>
+<div class="topLeft">
+<div id="motifs">
+	<div class="designer">
+	</div>
+</div>
+</div>
+<div class="topRight">
+
+</div>
+</body>
+</html>
